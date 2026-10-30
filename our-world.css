@@ -1,0 +1,1516 @@
+/*
+ * GP Refresh — Our World (Landing Page)
+ * Scoped to .gpr-ow-* classes only; nothing here targets shared header/footer/theme elements.
+ * Paste into Elementor > Page Settings (page 17225) > Advanced > Custom CSS.
+ *
+ * Tokens reuse the live Blocksy palette (wp-content/uploads/blocksy/css/global.css)
+ * with the verified hex values as fallbacks:
+ *   palette-1 #020a0a ink · palette-2 #1f443d green · palette-3 #be9a5e gold
+ *   palette-5 #ECECEA stone · palette-7 #F5F4EE cream · hero shade rgb(25,25,23) (Gala Dinner hero overlay)
+ * Type scale mirrors the Gala Dinner hero (H1 80/60/41px, eyebrow 14px/600/5px) and
+ * homepage section headings (H2 50/65px).
+ */
+
+.gpr-ow-hero,
+.gpr-ow-events,
+.gpr-ow-eoi,
+.gpr-ow-groups,
+.gpr-ow-pillars {
+	--gpr-ink: var(--theme-palette-color-1, #020a0a);
+	--gpr-green: var(--theme-palette-color-2, #1f443d);
+	--gpr-gold: var(--theme-palette-color-3, #be9a5e);
+	--gpr-stone: var(--theme-palette-color-5, #ECECEA);
+	--gpr-cream: var(--theme-palette-color-7, #F5F4EE);
+	--gpr-shade: 25, 25, 23;
+	font-family: "Urbanist", sans-serif;
+	letter-spacing: 0.3px;
+}
+
+.elementor .gpr-ow-hero .elementor-widget,
+.elementor .gpr-ow-events .elementor-widget,
+.elementor .gpr-ow-eoi .elementor-widget,
+.elementor .gpr-ow-groups .elementor-widget,
+.elementor .gpr-ow-pillars .elementor-widget {
+	margin: 0;
+}
+
+/* Layout is declared here rather than relying on Elementor's per-element generated CSS */
+.elementor .gpr-ow-hero,
+.elementor .gpr-ow-hero > .e-con-inner,
+.elementor .gpr-ow-hero__content,
+.elementor .gpr-ow-hero__meta,
+.elementor .gpr-ow-events,
+.elementor .gpr-ow-events > .e-con-inner,
+.elementor .gpr-ow-eoi,
+.elementor .gpr-ow-eoi__intro,
+.elementor .gpr-ow-groups,
+.elementor .gpr-ow-groups > .e-con-inner,
+.elementor .gpr-ow-head,
+.elementor .gpr-ow-pillars__text {
+	--display: flex;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+	min-width: 0;
+}
+
+/* ---------- Hero ---------- */
+
+.elementor .gpr-ow-hero {
+	position: relative;
+	isolation: isolate;
+	min-height: 900px;
+	padding: 200px 70px 110px;
+	justify-content: center;
+	background-color: rgb(var(--gpr-shade));
+	overflow: hidden;
+}
+
+.elementor .gpr-ow-hero > .e-con-inner {
+	position: static;
+	flex-grow: 1;
+	justify-content: center;
+	max-width: 1300px; /* Elementor kit container width */
+	margin-inline: auto;
+	padding: 0;
+}
+
+/* Photo: real <img> (HTML widget) so it gets srcset + width/height and no layout shift */
+.elementor .gpr-ow-hero .gpr-ow-hero__media {
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+}
+
+.gpr-ow-hero__media .elementor-widget-container,
+.gpr-ow-hero__media picture {
+	display: block;
+	height: 100%;
+}
+
+.gpr-ow-hero__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 72% 40%;
+}
+
+/* Restrained overlay: dense on the text side, light over the subjects; top shade keeps the overlay header legible */
+.gpr-ow-hero__media .elementor-widget-container::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		linear-gradient(180deg, rgba(var(--gpr-shade), 0.72) 0, rgba(var(--gpr-shade), 0) 240px),
+		linear-gradient(90deg, rgba(var(--gpr-shade), 0.94) 0%, rgba(var(--gpr-shade), 0.82) 36%, rgba(var(--gpr-shade), 0.3) 68%, rgba(var(--gpr-shade), 0.18) 100%);
+}
+
+.elementor .gpr-ow-hero__content {
+	max-width: 760px;
+	gap: 0;
+	padding: 0;
+}
+
+.gpr-ow-eyebrow .elementor-heading-title,
+.gpr-ow-status .elementor-heading-title {
+	font-family: "Urbanist", sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+}
+
+.elementor .gpr-ow-hero .gpr-ow-eyebrow .elementor-heading-title {
+	color: var(--gpr-stone);
+}
+
+.elementor .gpr-ow-hero .gpr-ow-title .elementor-heading-title {
+	margin: 26px 0 30px;
+	font-family: "Urbanist", sans-serif;
+	font-size: 72px;
+	font-weight: 400;
+	line-height: 1.08;
+	letter-spacing: 0.3px;
+	color: #fff;
+}
+
+/* Two set lines: "Explore Opportunities" / "with GP Refresh" (each may still wrap on narrow phones) */
+.gpr-ow-title .gpr-ow-line {
+	display: block;
+}
+
+@media (min-width: 1025px) and (max-width: 1365px) {
+	.elementor .gpr-ow-hero .gpr-ow-title .elementor-heading-title {
+		font-size: 64px;
+	}
+}
+
+/* Line-length caps sit on .elementor-widget-container: Elementor forces max-width:100% on widgets inside containers */
+.gpr-ow-lede > .elementor-widget-container {
+	max-width: 580px;
+}
+
+.elementor .gpr-ow-hero .gpr-ow-lede {
+	color: rgba(255, 255, 255, 0.81);
+	font-size: 17.6px;
+	line-height: 1.65;
+}
+
+.gpr-ow-lede p {
+	margin: 0;
+}
+
+.elementor .gpr-ow-hero .gpr-ow-hero__meta {
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px 32px;
+	max-width: 580px;
+	margin-top: 44px;
+	padding: 28px 0 0;
+	border-top: 1px solid rgba(236, 236, 234, 0.22);
+}
+
+.elementor .gpr-ow-hero .gpr-ow-status .elementor-heading-title {
+	color: var(--gpr-gold);
+}
+
+/* Button: the site's header "Register Now" outline pill (Blocksy ct-button) */
+.elementor .gpr-ow-hero .gpr-ow-button .elementor-button {
+	display: inline-flex;
+	align-items: center;
+	min-height: 44px;
+	padding: 12px 30px;
+	border: 1px solid rgba(224, 229, 235, 0.5);
+	border-radius: 50px;
+	background: transparent;
+	color: #fff;
+	font-family: "Urbanist", sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: 0.3px;
+	text-transform: uppercase;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.elementor .gpr-ow-hero .gpr-ow-button .elementor-button:hover,
+.elementor .gpr-ow-hero .gpr-ow-button .elementor-button:focus-visible {
+	background: var(--gpr-gold);
+	border-color: var(--gpr-gold);
+	color: var(--gpr-ink);
+}
+
+.elementor .gpr-ow-hero .gpr-ow-button .elementor-button:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
+
+/* ---------- Pillars (Refresh | Reframe | Reignite) ---------- */
+
+.elementor .gpr-ow-pillars {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	padding: 0;
+	gap: 0;
+	background-color: var(--gpr-cream);
+}
+
+.elementor .gpr-ow-pillars .gpr-ow-pillars__media {
+	min-height: 640px;
+	height: 100%;
+}
+
+.gpr-ow-pillars__media .elementor-widget-container,
+.gpr-ow-pillars__media picture {
+	display: block;
+	height: 100%;
+}
+
+.gpr-ow-pillars__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 45%;
+}
+
+.elementor .gpr-ow-pillars .gpr-ow-pillars__text {
+	justify-content: center;
+	gap: 0;
+	padding: 110px 70px;
+	max-width: 720px;
+}
+
+.elementor .gpr-ow-pillars .gpr-ow-eyebrow .elementor-heading-title {
+	color: var(--gpr-ink);
+}
+
+.elementor .gpr-ow-pillars .gpr-ow-pillars__title .elementor-heading-title {
+	margin: 28px 0 32px;
+	font-family: "Urbanist", sans-serif;
+	font-size: 50px;
+	font-weight: 400;
+	line-height: 1.3;
+	letter-spacing: 0.3px;
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-pillars__title .gpr-ow-line {
+	display: block;
+}
+
+.gpr-ow-pillars__copy > .elementor-widget-container {
+	max-width: 500px;
+	padding-top: 28px;
+	border-top: 1px solid var(--gpr-gold);
+}
+
+.elementor .gpr-ow-pillars .gpr-ow-pillars__copy {
+	color: var(--gpr-ink);
+	font-size: 17.6px;
+	line-height: 1.65;
+}
+
+.gpr-ow-pillars__copy p {
+	margin: 0;
+}
+
+/* ---------- Shared section frame (Upcoming Conferences, Expression of Interest, Group Discounts) ---------- */
+
+.elementor .gpr-ow-events,
+.elementor .gpr-ow-eoi,
+.elementor .gpr-ow-groups {
+	padding: 110px 70px;
+}
+
+.elementor .gpr-ow-events > .e-con-inner,
+.elementor .gpr-ow-groups > .e-con-inner {
+	gap: 56px;
+	max-width: 1300px; /* Elementor kit container width */
+	margin-inline: auto;
+	padding: 0;
+}
+
+.elementor .gpr-ow-head {
+	gap: 0;
+	max-width: 760px;
+	padding: 0;
+}
+
+.elementor .gpr-ow-head .gpr-ow-head__title .elementor-heading-title {
+	margin: 28px 0 0;
+	font-family: "Urbanist", sans-serif;
+	font-size: 50px;
+	font-weight: 400;
+	line-height: 1.3;
+	letter-spacing: 0.3px;
+}
+
+.gpr-ow-head__lede > .elementor-widget-container {
+	max-width: 620px;
+	margin-top: 24px;
+}
+
+.elementor .gpr-ow-head .gpr-ow-head__lede {
+	font-size: 17.6px;
+	line-height: 1.65;
+}
+
+.gpr-ow-head__lede p {
+	margin: 0;
+}
+
+/* Pill links: same outline pill as the hero button, recoloured per section */
+.gpr-ow-pill {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: 12px 30px;
+	border: 1px solid currentColor;
+	border-radius: 50px;
+	font-family: "Urbanist", sans-serif;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: 0.3px;
+	text-transform: uppercase;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.gpr-ow-pill:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+/* ---------- Upcoming Conferences ---------- */
+
+.elementor .gpr-ow-events {
+	background-color: #fff;
+}
+
+.elementor .gpr-ow-events .gpr-ow-eyebrow .elementor-heading-title,
+.elementor .gpr-ow-events .gpr-ow-head__title .elementor-heading-title,
+.elementor .gpr-ow-events .gpr-ow-head__lede {
+	color: var(--gpr-ink);
+}
+
+.elementor .gpr-ow-events__header {
+	--display: grid;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(300px, 420px);
+	align-items: center;
+	gap: 48px;
+	width: 100%;
+	padding: 0;
+}
+
+.elementor .gpr-ow-events__countdown {
+	width: 100%;
+	min-width: 0;
+}
+
+.gpr-ow-countdown {
+	position: relative;
+	box-sizing: border-box;
+	padding: 26px 24px 22px;
+	border: 1px solid #e3d9c7;
+	border-top: 3px solid var(--gpr-gold);
+	border-radius: 16px;
+	background: linear-gradient(135deg, #fcfaf5, #f3eee3);
+	box-shadow: 0 16px 36px -24px rgba(31, 68, 61, 0.35);
+	color: var(--gpr-green);
+	text-align: left;
+}
+
+.gpr-ow-countdown__topline {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 18px;
+}
+
+.gpr-ow-countdown__eyebrow {
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: 1.8px;
+	text-transform: uppercase;
+	color: #78613d;
+}
+
+.gpr-ow-countdown__edition {
+	flex-shrink: 0;
+	padding: 4px 9px;
+	border: 1px solid #d6c4a4;
+	border-radius: 4px;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 1px;
+	color: #78613d;
+}
+
+.gpr-ow-countdown__heading {
+	margin: 0 0 22px;
+	color: var(--gpr-green);
+	font-family: "Urbanist", sans-serif;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 1.25;
+	letter-spacing: -0.5px;
+}
+
+.gpr-ow-countdown__digits {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.gpr-ow-countdown__unit {
+	position: relative;
+	min-width: 0;
+	text-align: center;
+}
+
+/* Decorative separator dots; the timer's spoken labels come from the unit text. */
+.gpr-ow-countdown__unit:not(:last-child)::after {
+	content: "";
+	position: absolute;
+	top: 34px;
+	right: -7px;
+	width: 2px;
+	height: 2px;
+	border-radius: 50%;
+	background: #9a7a43;
+	box-shadow: 0 7px 0 #9a7a43;
+}
+
+.gpr-ow-countdown__value {
+	display: block;
+	padding: 18px 0;
+	border: 1px solid #183b32;
+	border-radius: 8px;
+	background: linear-gradient(180deg, #244b41 0%, #244b41 49%, #183b32 50%, #1c4037 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 3px 0 #cdbb98;
+	color: #fbf5e8;
+	font-family: "Urbanist", sans-serif;
+	font-size: 42px;
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	line-height: 1;
+	letter-spacing: -1px;
+}
+
+.gpr-ow-countdown__label {
+	display: block;
+	margin-top: 13px;
+	color: #5a645b;
+	font-size: 9px;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.gpr-ow-countdown__date {
+	margin: 20px 0 0;
+	padding-top: 15px;
+	border-top: 1px solid #dfd5c3;
+	font-family: "Urbanist", sans-serif;
+	font-size: 12px;
+	line-height: 1.6;
+	color: #5a645b;
+	text-align: center;
+}
+
+.gpr-ow-countdown__status {
+	margin: 14px 0 0;
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--gpr-green);
+}
+
+.gpr-ow-events__rows {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 24px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gpr-ow-event {
+	grid-column: span 2;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	border: 1px solid var(--gpr-stone);
+	border-radius: 20px;
+	background: #fff;
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-event__media {
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	border-radius: 19px 19px 0 0;
+	background: var(--gpr-stone);
+}
+
+.gpr-ow-event__media img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.gpr-ow-event__content {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 18px;
+	padding: 28px;
+}
+
+.gpr-ow-event__body {
+	flex: 1;
+}
+
+.gpr-ow-event--compact {
+	grid-column: span 3;
+	background: #f5f4ee;
+}
+
+.gpr-ow-event--compact .gpr-ow-event__content {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 12px 24px;
+}
+
+.gpr-ow-event--compact .gpr-ow-event__date {
+	grid-column: 1 / -1;
+}
+
+.gpr-ow-event__date {
+	margin: 0;
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+.gpr-ow-event__tbc {
+	display: inline-block;
+	margin-left: 8px;
+	padding: 2px 10px;
+	border: 1px solid var(--gpr-gold);
+	border-radius: 50px;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	vertical-align: middle;
+}
+
+.gpr-ow-events .gpr-ow-event__city {
+	margin: 0;
+	font-family: "Urbanist", sans-serif;
+	font-size: 32px;
+	font-weight: 400;
+	line-height: 1.25;
+	letter-spacing: 0.3px;
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-event__venue {
+	margin: 6px 0 0;
+	font-size: 16px;
+	line-height: 1.55;
+	color: rgba(2, 10, 10, 0.7);
+}
+
+.gpr-ow-events .gpr-ow-pill {
+	color: var(--gpr-ink);
+	border-color: rgba(2, 10, 10, 0.35);
+}
+
+.gpr-ow-events .gpr-ow-pill:hover,
+.gpr-ow-events .gpr-ow-pill:focus-visible {
+	background: var(--gpr-ink);
+	border-color: var(--gpr-ink);
+	color: #fff;
+}
+
+/* ---------- Expression of Interest (form wiring: preview/js/gpr-eoi.js + gpr-config.js) ---------- */
+
+.elementor .gpr-ow-eoi {
+	background-color: var(--gpr-cream);
+	scroll-margin-top: 24px;
+}
+
+.elementor .gpr-ow-eoi > .e-con-inner {
+	--display: grid;
+	display: grid;
+	grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+	align-items: start;
+	gap: 72px;
+	max-width: 1300px; /* Elementor kit container width */
+	margin-inline: auto;
+	padding: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html:has(#expression-of-interest) {
+		scroll-behavior: smooth;
+	}
+}
+
+.elementor .gpr-ow-eoi__intro {
+	gap: 40px;
+	padding: 0;
+}
+
+.elementor .gpr-ow-eoi .gpr-ow-eyebrow .elementor-heading-title,
+.elementor .gpr-ow-eoi .gpr-ow-head__title .elementor-heading-title,
+.elementor .gpr-ow-eoi .gpr-ow-head__lede {
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-eoi__steps {
+	display: grid;
+	gap: 14px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: gpr-eoi-step;
+	font-size: 16px;
+	line-height: 1.55;
+	color: rgba(2, 10, 10, 0.8);
+}
+
+.gpr-ow-eoi__steps li {
+	display: grid;
+	grid-template-columns: 34px minmax(0, 1fr);
+	align-items: baseline;
+	gap: 14px;
+	counter-increment: gpr-eoi-step;
+}
+
+.gpr-ow-eoi__steps li::before {
+	content: counter(gpr-eoi-step, decimal-leading-zero);
+	color: var(--gpr-green);
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+.gpr-ow-eoi__access {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 16px 24px;
+	margin-top: 36px;
+	padding-top: 28px;
+	border-top: 1px solid var(--gpr-gold);
+}
+
+.gpr-ow-eoi__access p {
+	margin: 0;
+	color: var(--gpr-ink);
+	font-size: 17.6px;
+	font-weight: 600;
+}
+
+.gpr-ow-eoi .gpr-ow-pill {
+	color: var(--gpr-ink);
+	border-color: rgba(2, 10, 10, 0.35);
+}
+
+.gpr-ow-eoi .gpr-ow-pill--solid {
+	background: var(--gpr-green);
+	border-color: var(--gpr-green);
+	color: #fff;
+}
+
+.gpr-ow-eoi .gpr-ow-pill:hover,
+.gpr-ow-eoi .gpr-ow-pill:focus-visible {
+	background: var(--gpr-gold);
+	border-color: var(--gpr-gold);
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-eoi .gpr-ow-pill:focus-visible {
+	outline-color: var(--gpr-green);
+}
+
+.gpr-ow-eoi__card {
+	padding: 44px;
+	border: 1px solid var(--gpr-stone);
+	border-radius: 20px;
+	background: #fff;
+	color: var(--gpr-ink);
+	box-shadow: 0 24px 48px -36px rgba(31, 68, 61, 0.45);
+}
+
+.gpr-ow-form {
+	margin: 0;
+}
+
+.gpr-ow-form__title {
+	margin: 0 0 28px;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 1.3;
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-form__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 22px 20px;
+}
+
+.gpr-ow-field {
+	min-width: 0;
+}
+
+.gpr-ow-eoi .gpr-ow-field label {
+	display: block;
+	margin: 0 0 8px;
+	color: var(--gpr-ink);
+	font-family: "Urbanist", sans-serif;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.gpr-ow-field__req {
+	color: #8a6a36; /* darkened gold: 4.9:1 on white */
+}
+
+.gpr-ow-eoi .gpr-ow-field input {
+	display: block;
+	width: 100%;
+	height: auto;
+	min-height: 52px;
+	margin: 0;
+	padding: 12px 16px;
+	border: 1px solid rgba(2, 10, 10, 0.45); /* 3.3:1 against white */
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: none;
+	color: var(--gpr-ink);
+	font-family: "Urbanist", sans-serif;
+	font-size: 16px; /* 16px keeps iOS from zooming on focus */
+	line-height: 1.4;
+	letter-spacing: 0.3px;
+	transition: border-color 0.2s ease;
+}
+
+.gpr-ow-eoi .gpr-ow-field input::placeholder {
+	color: rgba(2, 10, 10, 0.5);
+	opacity: 1;
+}
+
+.gpr-ow-eoi .gpr-ow-field input:focus {
+	border-color: var(--gpr-green);
+	outline: 2px solid var(--gpr-green);
+	outline-offset: 1px;
+}
+
+.gpr-ow-eoi .gpr-ow-field input[aria-invalid="true"] {
+	border-color: #b42318;
+}
+
+.gpr-ow-field__error {
+	margin: 8px 0 0;
+	color: #b42318;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.gpr-ow-form__status {
+	margin: 24px 0 0;
+	padding: 14px 18px;
+	border: 1px solid rgba(180, 35, 24, 0.35);
+	border-radius: 12px;
+	background: #fdf1f0;
+	color: #8a1c13;
+	font-size: 15px;
+	line-height: 1.55;
+}
+
+.gpr-ow-form__status a {
+	color: inherit;
+	font-weight: 600;
+}
+
+.gpr-ow-form__foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 14px 24px;
+	margin-top: 32px;
+}
+
+.gpr-ow-eoi .gpr-ow-form__submit {
+	gap: 10px;
+	min-height: 52px;
+	padding: 14px 34px;
+	cursor: pointer;
+	font-family: "Urbanist", sans-serif;
+	font-size: 13px;
+	white-space: normal;
+}
+
+.gpr-ow-eoi .gpr-ow-form__submit:disabled {
+	cursor: not-allowed;
+	opacity: 0.75;
+	transform: none;
+}
+
+.gpr-ow-eoi .gpr-ow-form__submit:disabled:hover {
+	background: var(--gpr-green);
+	border-color: var(--gpr-green);
+	color: #fff;
+}
+
+.gpr-ow-form__submit.is-loading::before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	border: 2px solid currentColor;
+	border-right-color: transparent;
+	border-radius: 50%;
+	animation: gpr-ow-spin 0.8s linear infinite;
+}
+
+@keyframes gpr-ow-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.gpr-ow-form__note {
+	margin: 0;
+	color: rgba(2, 10, 10, 0.7);
+	font-size: 14px;
+}
+
+.gpr-ow-eoi__iframe {
+	display: block;
+	width: 100%;
+	min-height: 720px;
+	border: 0;
+}
+
+/* Thank-you message: replaces the form in the same card after a confirmed submission */
+.gpr-ow-eoi__card {
+	scroll-margin-top: 24px;
+}
+
+.gpr-ow-eoi__thanks {
+	padding: 20px 0 8px;
+	text-align: center;
+}
+
+.gpr-ow-form[hidden],
+.gpr-ow-eoi__thanks[hidden] {
+	display: none;
+}
+
+.gpr-ow-eoi__mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	margin-bottom: 24px;
+	border: 1px solid var(--gpr-gold);
+	border-radius: 50%;
+	color: var(--gpr-green);
+}
+
+.gpr-ow-eoi__thanks .gpr-ow-form__title {
+	margin-bottom: 16px;
+	font-size: 34px;
+	line-height: 1.25;
+}
+
+.gpr-ow-eoi__thanks .gpr-ow-form__title:focus {
+	outline: none;
+}
+
+.gpr-ow-eoi__thanks-text {
+	max-width: 520px;
+	margin: 0 auto;
+	color: rgba(2, 10, 10, 0.75);
+	font-size: 17.6px;
+	line-height: 1.65;
+}
+
+.gpr-ow-eoi__thanks-note {
+	max-width: 520px;
+	margin: 24px auto 0;
+	padding: 16px 20px;
+	border-left: 2px solid var(--gpr-gold);
+	border-radius: 0 12px 12px 0;
+	background: var(--gpr-cream);
+	color: var(--gpr-ink);
+	font-size: 16px;
+	line-height: 1.6;
+	text-align: left;
+}
+
+.gpr-ow-eoi__thanks-actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 14px;
+	margin-top: 32px;
+}
+
+/* ---------- Group Discounts ---------- */
+
+.elementor .gpr-ow-groups {
+	background-color: var(--gpr-green);
+}
+
+.elementor .gpr-ow-groups .gpr-ow-eyebrow .elementor-heading-title {
+	color: var(--gpr-stone);
+}
+
+.elementor .gpr-ow-groups .gpr-ow-head__title .elementor-heading-title {
+	color: #fff;
+}
+
+.elementor .gpr-ow-groups .gpr-ow-head__lede {
+	color: rgba(255, 255, 255, 0.81);
+}
+
+.gpr-ow-tiers {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 20px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.gpr-ow-tier {
+	display: flex;
+	flex-direction: column;
+	padding: 32px 26px;
+	border: 1px solid rgba(236, 236, 234, 0.22);
+	border-radius: 20px;
+	color: #fff;
+}
+
+.gpr-ow-tier__label {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: var(--gpr-stone);
+}
+
+/* Large numerals only: gold on green passes contrast at this size, not for body text */
+.gpr-ow-tier__off {
+	margin: 18px 0 22px;
+	font-size: 56px;
+	font-weight: 400;
+	line-height: 1;
+	color: var(--gpr-gold);
+}
+
+.gpr-ow-tier__off small {
+	margin-left: 4px;
+	font-size: 18px;
+	font-weight: 600;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.gpr-ow-tier__price {
+	margin: auto 0 0;
+	padding-top: 20px;
+	border-top: 1px solid rgba(236, 236, 234, 0.22);
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1.3;
+}
+
+/* Inline so every tier's divider sits at the same height */
+.gpr-ow-tier__price s {
+	margin-left: 8px;
+	font-size: 15px;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.gpr-ow-tier__unit {
+	display: block;
+	margin-top: 4px;
+	font-size: 13px;
+	font-weight: 400;
+	color: rgba(255, 255, 255, 0.72);
+}
+
+/* Best-value tier: the site's ink-on-gold hover pairing (7.6:1) */
+.gpr-ow-tier--best {
+	background: var(--gpr-gold);
+	border-color: var(--gpr-gold);
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-tier--best .gpr-ow-tier__label,
+.gpr-ow-tier--best .gpr-ow-tier__off,
+.gpr-ow-tier--best .gpr-ow-tier__unit {
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-tier--best .gpr-ow-tier__price {
+	border-top-color: rgba(2, 10, 10, 0.25);
+}
+
+.gpr-ow-groups__foot {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px 40px;
+	margin-top: 40px;
+	padding-top: 32px;
+	border-top: 1px solid rgba(236, 236, 234, 0.22);
+}
+
+.gpr-ow-groups__notes {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-size: 15px;
+	line-height: 1.65;
+	color: rgba(255, 255, 255, 0.81);
+}
+
+.gpr-ow-groups__notes a {
+	color: #fff;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.gpr-ow-groups__notes a:hover,
+.gpr-ow-groups__notes a:focus-visible {
+	color: var(--gpr-gold);
+}
+
+.gpr-ow-groups__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+}
+
+.gpr-ow-groups .gpr-ow-pill {
+	color: #fff;
+	border-color: rgba(224, 229, 235, 0.5);
+}
+
+.gpr-ow-groups .gpr-ow-pill--solid {
+	background: var(--gpr-gold);
+	border-color: var(--gpr-gold);
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-groups .gpr-ow-pill:hover,
+.gpr-ow-groups .gpr-ow-pill:focus-visible {
+	background: var(--gpr-gold);
+	border-color: var(--gpr-gold);
+	color: var(--gpr-ink);
+}
+
+.gpr-ow-groups .gpr-ow-pill--solid:hover,
+.gpr-ow-groups .gpr-ow-pill--solid:focus-visible {
+	background: #fff;
+	border-color: #fff;
+}
+
+/* ---------- Testimonials (section from preview/social.html, styled by its own scoped <style>) ---------- */
+
+.elementor .gpr-ow-testimonials {
+	--display: block;
+	display: block;
+	padding: 0;
+}
+
+.elementor .gpr-ow-testimonials .elementor-widget {
+	margin: 0;
+}
+
+/* Optional discount artwork supplied by the BLT group (rendered only when BLT_VISUALS is set in build.js) */
+.gpr-ow-visuals {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	gap: 20px;
+	margin-top: 40px;
+}
+
+.gpr-ow-visuals img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: 20px;
+}
+
+/* ---------- Tablet (Elementor breakpoint ≤1024px) ---------- */
+
+@media (max-width: 1024px) {
+	/* Portrait-ish viewports: subjects stay in the upper half, text is anchored to the darker lower half.
+	   The page has no site header or floating buttons, so bottom padding only needs to frame the CTA. */
+	.elementor .gpr-ow-hero {
+		min-height: 900px;
+		padding: 190px 30px 80px;
+		justify-content: flex-end;
+	}
+
+	.elementor .gpr-ow-hero > .e-con-inner {
+		justify-content: flex-end;
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-title .elementor-heading-title {
+		font-size: 60px;
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-hero__meta {
+		justify-content: flex-start;
+	}
+
+	.gpr-ow-hero__media img {
+		object-position: 74% 20%;
+	}
+
+	.gpr-ow-hero__media .elementor-widget-container::after {
+		background: linear-gradient(180deg,
+			rgba(var(--gpr-shade), 0.78) 0%,
+			rgba(var(--gpr-shade), 0.25) 22%,
+			rgba(var(--gpr-shade), 0.4) 38%,
+			rgba(var(--gpr-shade), 0.9) 56%,
+			rgb(var(--gpr-shade)) 100%);
+	}
+
+	.elementor .gpr-ow-pillars {
+		grid-template-columns: 1fr;
+	}
+
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__media {
+		min-height: 0;
+		aspect-ratio: 3 / 2;
+	}
+
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__text {
+		max-width: none;
+		padding: 80px 30px 90px;
+	}
+
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__title .elementor-heading-title {
+		font-size: 44px;
+	}
+
+	.elementor .gpr-ow-events,
+	.elementor .gpr-ow-eoi,
+	.elementor .gpr-ow-groups {
+		padding: 80px 30px 90px;
+	}
+
+	.elementor .gpr-ow-events > .e-con-inner,
+	.elementor .gpr-ow-groups > .e-con-inner {
+		gap: 44px;
+	}
+
+	.elementor .gpr-ow-head .gpr-ow-head__title .elementor-heading-title {
+		font-size: 44px;
+	}
+
+	.gpr-ow-events__rows {
+		gap: 18px;
+	}
+
+	.elementor .gpr-ow-events__header {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 32px;
+	}
+
+	.elementor .gpr-ow-events__countdown {
+		max-width: 420px;
+	}
+
+	.gpr-ow-countdown__value {
+		font-size: 36px;
+	}
+
+	.gpr-ow-event__content {
+		padding: 22px;
+	}
+
+	.gpr-ow-event--compact .gpr-ow-event__content {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.gpr-ow-tiers {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	/* 3 + 2 layout: the top row holds three tiers, the bottom row the two largest */
+	.gpr-ow-tier {
+		grid-column: span 2;
+	}
+
+	.gpr-ow-tier:nth-child(n + 4) {
+		grid-column: span 3;
+	}
+
+	.elementor .gpr-ow-eoi > .e-con-inner {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 44px;
+	}
+
+	.elementor .gpr-ow-eoi__intro {
+		gap: 32px;
+		max-width: 760px;
+	}
+}
+
+/* ---------- Mobile (Elementor breakpoint ≤767px) ---------- */
+
+@media (max-width: 767px) {
+	.elementor .gpr-ow-hero {
+		min-height: 860px; /* text starts below the speaker's face */
+		padding: 200px 20px 64px;
+	}
+
+	/* Centre the speaker's face in the top half, above the text */
+	.gpr-ow-hero__media img {
+		object-position: 46% 0%;
+	}
+
+	.gpr-ow-eyebrow .elementor-heading-title,
+	.gpr-ow-status .elementor-heading-title {
+		font-size: 12px;
+		letter-spacing: 4px;
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-title .elementor-heading-title {
+		margin: 20px 0 22px;
+		/* "Explore Opportunities" is ~9.5em wide; scale down so it stays on one line inside the 20px gutters */
+		font-size: min(41px, calc((100vw - 40px) / 10.5));
+		line-height: 1.15;
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-lede,
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__copy {
+		font-size: 16px;
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-hero__meta {
+		margin-top: 32px;
+		padding-top: 24px;
+	}
+
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__text {
+		padding: 64px 20px 72px;
+	}
+
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__title .elementor-heading-title {
+		margin: 22px 0 26px;
+		font-size: 32px;
+		line-height: 1.3;
+	}
+
+	.elementor .gpr-ow-events,
+	.elementor .gpr-ow-eoi,
+	.elementor .gpr-ow-groups {
+		padding: 64px 20px 72px;
+	}
+
+	.elementor .gpr-ow-events > .e-con-inner,
+	.elementor .gpr-ow-groups > .e-con-inner {
+		gap: 36px;
+	}
+
+	.elementor .gpr-ow-head .gpr-ow-head__title .elementor-heading-title {
+		margin-top: 22px;
+		font-size: 32px;
+	}
+
+	.elementor .gpr-ow-head .gpr-ow-head__lede {
+		font-size: 16px;
+	}
+
+	.gpr-ow-events__rows {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.gpr-ow-countdown {
+		padding: 24px 16px;
+	}
+
+	.gpr-ow-countdown__digits {
+		gap: 6px;
+	}
+
+	.gpr-ow-countdown__unit:not(:last-child)::after {
+		display: none;
+	}
+
+	.gpr-ow-countdown__heading {
+		font-size: 25px;
+	}
+
+	.gpr-ow-countdown__label {
+		letter-spacing: 0.3px;
+	}
+
+	.gpr-ow-countdown__value {
+		padding: 16px 0;
+		font-size: 28px;
+	}
+
+	.gpr-ow-event,
+	.gpr-ow-event--compact {
+		grid-column: auto;
+	}
+
+	.gpr-ow-event__date {
+		font-size: 17px;
+	}
+
+	.gpr-ow-events .gpr-ow-event__city {
+		font-size: 26px;
+	}
+
+	.gpr-ow-event__venue {
+		font-size: 15px;
+	}
+
+	.gpr-ow-event .gpr-ow-pill {
+		align-self: flex-start;
+		justify-self: start;
+		margin-top: 8px;
+	}
+
+	/* Tiers become compact rows: label + discount on the left, price on the right */
+	.gpr-ow-tiers {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 12px;
+	}
+
+	.gpr-ow-tier,
+	.gpr-ow-tier:nth-child(n + 4) {
+		grid-column: auto;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 4px 16px;
+		padding: 20px;
+		border-radius: 16px;
+	}
+
+	.gpr-ow-tier__off {
+		grid-row: 2;
+		margin: 0;
+		font-size: 34px;
+	}
+
+	.gpr-ow-tier__off small {
+		font-size: 14px;
+	}
+
+	.gpr-ow-tier__price {
+		grid-column: 2;
+		grid-row: 1 / 3;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 20px;
+		text-align: right;
+	}
+
+	.gpr-ow-groups__foot {
+		margin-top: 28px;
+	}
+
+	.gpr-ow-groups__actions,
+	.gpr-ow-groups__actions .gpr-ow-pill {
+		width: 100%;
+	}
+
+	.elementor .gpr-ow-eoi > .e-con-inner {
+		gap: 36px;
+	}
+
+	.gpr-ow-eoi__card {
+		padding: 28px 20px;
+		border-radius: 16px;
+	}
+
+	.gpr-ow-form__title {
+		margin-bottom: 22px;
+		font-size: 22px;
+	}
+
+	.gpr-ow-form__grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+	}
+
+	.gpr-ow-eoi__access p {
+		font-size: 16px;
+	}
+
+	.gpr-ow-eoi__access .gpr-ow-pill,
+	.gpr-ow-eoi .gpr-ow-form__submit,
+	.gpr-ow-eoi__thanks-actions .gpr-ow-pill {
+		width: 100%;
+	}
+
+	.gpr-ow-eoi__thanks .gpr-ow-form__title {
+		font-size: 26px;
+	}
+
+	.gpr-ow-eoi__thanks-text {
+		font-size: 16px;
+	}
+}
+
+@media (max-width: 359px) {
+	.elementor .gpr-ow-pillars .gpr-ow-pillars__title .elementor-heading-title {
+		font-size: 28px;
+	}
+}
+
+/* ---------- Subtle motion ---------- */
+
+/* The behavior-only HTML widget takes no space in either Elementor or the preview. */
+.elementor .gpr-ow-motion {
+	display: none;
+}
+
+/* Entrances use the Web Animations API; there are no hidden-by-default CSS states. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+	.gpr-ow-event,
+	.gpr-ow-tier {
+		transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+	}
+
+	.gpr-ow-event__media img {
+		transition: transform 0.45s ease;
+	}
+
+	.gpr-ow-event:hover {
+		transform: translateY(-4px);
+		border-color: var(--gpr-gold);
+		box-shadow: 0 12px 28px -18px rgba(31, 68, 61, 0.4);
+	}
+
+	.gpr-ow-event:hover .gpr-ow-event__media img {
+		transform: scale(1.035);
+	}
+
+	.gpr-ow-tier:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.35);
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-button .elementor-button,
+	.gpr-ow-pill {
+		transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+	}
+
+	.elementor .gpr-ow-hero .gpr-ow-button .elementor-button:hover,
+	.gpr-ow-pill:hover {
+		transform: translateY(-2px);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.elementor .gpr-ow-hero .gpr-ow-button .elementor-button,
+	.gpr-ow-pill,
+	.gpr-ow-eoi .gpr-ow-field input {
+		transition: none;
+	}
+
+	.gpr-ow-form__submit.is-loading::before {
+		animation-duration: 2.4s;
+	}
+}

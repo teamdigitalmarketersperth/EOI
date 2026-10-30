@@ -1,0 +1,848 @@
+/*
+ * GP Refresh — standalone pages (thank-you.html, prospectus-access.html).
+ * Same tokens and type as our-world.css: Urbanist, ink #020a0a, green #1f443d, gold #be9a5e,
+ * stone #ECECEA, cream #F5F4EE, pill buttons, 20px card radius. No header or navigation.
+ */
+
+:root {
+	--gpr-ink: #020a0a;
+	--gpr-green: #1f443d;
+	--gpr-gold: #be9a5e;
+	--gpr-stone: #ECECEA;
+	--gpr-cream: #F5F4EE;
+	--gpr-error: #b42318;
+	--gpr-field-border: rgba(2, 10, 10, 0.45); /* 3.3:1 on white for input outlines */
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	min-height: 100dvh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 64px 20px;
+	background:
+		radial-gradient(circle at 15% 10%, rgba(190, 154, 94, 0.22), transparent 42%),
+		radial-gradient(circle at 90% 95%, rgba(190, 154, 94, 0.16), transparent 40%),
+		var(--gpr-green);
+	color: var(--gpr-ink);
+	font-family: "Urbanist", sans-serif;
+	font-size: 17.6px;
+	line-height: 1.65;
+	letter-spacing: 0.3px;
+}
+
+.gpr-page {
+	width: 100%;
+	max-width: 600px;
+	padding: 56px 52px 52px;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 30px 60px -36px rgba(0, 0, 0, 0.55);
+}
+
+.gpr-page--narrow {
+	max-width: 540px;
+}
+
+.gpr-page--center {
+	text-align: center;
+}
+
+.gpr-page__mark {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	margin-bottom: 28px;
+	border: 1px solid var(--gpr-gold);
+	border-radius: 50%;
+	color: var(--gpr-green);
+}
+
+.gpr-page__eyebrow {
+	margin: 0;
+	color: var(--gpr-green);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+}
+
+.gpr-page__eyebrow::after {
+	content: "";
+	display: block;
+	width: 44px;
+	height: 2px;
+	margin-top: 18px;
+	background: var(--gpr-gold);
+}
+
+.gpr-page--center .gpr-page__eyebrow::after {
+	margin-inline: auto;
+}
+
+.gpr-page__title {
+	margin: 22px 0 0;
+	font-size: 40px;
+	font-weight: 400;
+	line-height: 1.2;
+	letter-spacing: 0.3px;
+}
+
+.gpr-page__text {
+	margin: 18px 0 0;
+	color: rgba(2, 10, 10, 0.75);
+}
+
+.gpr-page__note {
+	margin: 24px 0 0;
+	padding: 18px 20px;
+	border-left: 2px solid var(--gpr-gold);
+	border-radius: 0 12px 12px 0;
+	background: var(--gpr-cream);
+	color: var(--gpr-ink);
+	font-size: 16px;
+	text-align: left;
+}
+
+.gpr-page__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	margin-top: 36px;
+}
+
+.gpr-page--center .gpr-page__actions {
+	justify-content: center;
+}
+
+.gpr-page__foot {
+	margin: 28px 0 0;
+	padding-top: 22px;
+	border-top: 1px solid var(--gpr-stone);
+	color: rgba(2, 10, 10, 0.7);
+	font-size: 15px;
+}
+
+.gpr-page__foot a {
+	color: var(--gpr-green);
+	font-weight: 600;
+	text-underline-offset: 3px;
+}
+
+/* ---------- Buttons: the landing page's pill ---------- */
+
+.gpr-page-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	min-height: 48px;
+	padding: 13px 30px;
+	border: 1px solid currentColor;
+	border-radius: 50px;
+	background: transparent;
+	color: var(--gpr-ink);
+	font: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.3;
+	letter-spacing: 0.3px;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.gpr-page-btn--solid {
+	border-color: var(--gpr-green);
+	background: var(--gpr-green);
+	color: #fff;
+}
+
+.gpr-page-btn:hover,
+.gpr-page-btn:focus-visible {
+	border-color: var(--gpr-gold);
+	background: var(--gpr-gold);
+	color: var(--gpr-ink);
+}
+
+.gpr-page-btn:focus-visible,
+.gpr-page__foot a:focus-visible {
+	outline: 2px solid var(--gpr-green);
+	outline-offset: 3px;
+}
+
+.gpr-page-btn:disabled {
+	cursor: not-allowed;
+	opacity: 0.75;
+}
+
+.gpr-page-btn:disabled:hover {
+	border-color: var(--gpr-green);
+	background: var(--gpr-green);
+	color: #fff;
+}
+
+.gpr-page-btn.is-loading::before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	border: 2px solid currentColor;
+	border-right-color: transparent;
+	border-radius: 50%;
+	animation: gpr-spin 0.8s linear infinite;
+}
+
+@keyframes gpr-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ---------- Form ---------- */
+
+.gpr-page-form {
+	display: grid;
+	gap: 22px;
+	margin-top: 32px;
+}
+
+.gpr-page-field label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.4;
+}
+
+.gpr-page-field input {
+	display: block;
+	width: 100%;
+	min-height: 52px;
+	padding: 12px 16px;
+	border: 1px solid var(--gpr-field-border);
+	border-radius: 12px;
+	background: #fff;
+	color: var(--gpr-ink);
+	font: inherit;
+	font-size: 16px; /* 16px keeps iOS from zooming on focus */
+	letter-spacing: 0.3px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gpr-page-field input::placeholder {
+	color: rgba(2, 10, 10, 0.5);
+}
+
+.gpr-page-field input:focus {
+	border-color: var(--gpr-green);
+	outline: 2px solid var(--gpr-green);
+	outline-offset: 1px;
+}
+
+.gpr-page-field input[aria-invalid="true"] {
+	border-color: var(--gpr-error);
+}
+
+.gpr-page-field__hint,
+.gpr-page-field__error {
+	margin: 8px 0 0;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.gpr-page-field__hint {
+	color: rgba(2, 10, 10, 0.7);
+}
+
+.gpr-page-field__error {
+	color: var(--gpr-error);
+	font-weight: 600;
+}
+
+.gpr-page-form .gpr-page__actions {
+	flex-direction: column;
+	margin-top: 6px;
+}
+
+.gpr-page-form .gpr-page-btn {
+	width: 100%;
+}
+
+.gpr-page-status {
+	margin: 0;
+	padding: 14px 18px;
+	border-radius: 12px;
+	font-size: 15px;
+	line-height: 1.55;
+	background: var(--gpr-cream);
+}
+
+.gpr-page-status--error {
+	border: 1px solid rgba(180, 35, 24, 0.35);
+	background: #fdf1f0;
+	color: #8a1c13;
+}
+
+.gpr-page-status--success {
+	border: 1px solid rgba(31, 68, 61, 0.35);
+	background: #eef4f1;
+	color: var(--gpr-green);
+}
+
+.gpr-page-status a {
+	color: inherit;
+	font-weight: 600;
+}
+
+.gpr-page-notice {
+	margin: 24px 0 0;
+	padding: 14px 18px;
+	border: 1px solid rgba(190, 154, 94, 0.6);
+	border-radius: 12px;
+	background: var(--gpr-cream);
+	font-size: 15px;
+	line-height: 1.55;
+}
+
+/* ---------- Prospectus access: full-screen split that fits the viewport without scrolling ---------- */
+
+.gpr-access-body {
+	display: block;
+	min-height: 0;
+	padding: 0;
+	background: var(--gpr-cream);
+}
+
+.gpr-access {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	height: 100vh;
+	height: 100dvh;
+}
+
+.gpr-access__intro {
+	position: relative;
+	isolation: isolate;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 0;
+	padding: clamp(28px, 6vh, 64px) clamp(28px, 5vw, 72px);
+	overflow: hidden;
+	background: var(--gpr-green);
+	color: #fff;
+}
+
+.gpr-access__photo {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 46% 30%;
+}
+
+/* Green wash: the photo reads as texture, the copy stays at AA contrast */
+.gpr-access__intro::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background:
+		radial-gradient(circle at 85% 12%, rgba(190, 154, 94, 0.28), transparent 45%),
+		linear-gradient(180deg, rgba(20, 46, 41, 0.78) 0%, rgba(20, 46, 41, 0.9) 55%, rgba(16, 38, 34, 0.97) 100%);
+}
+
+.gpr-access__brand {
+	margin: 0;
+	color: var(--gpr-stone);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+}
+
+.gpr-access__brand::after {
+	content: "";
+	display: block;
+	width: 44px;
+	height: 2px;
+	margin-top: 16px;
+	background: var(--gpr-gold);
+}
+
+.gpr-access__title {
+	max-width: 560px;
+	margin: 0;
+	font-size: clamp(34px, 3.6vw, 56px);
+	font-weight: 400;
+	line-height: 1.12;
+	letter-spacing: 0.3px;
+}
+
+.gpr-access__text {
+	max-width: 480px;
+	margin: 20px 0 0;
+	color: rgba(255, 255, 255, 0.84);
+	font-size: 17.6px;
+	line-height: 1.6;
+}
+
+.gpr-access__steps {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 12px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: gpr-access-step;
+}
+
+.gpr-access__steps li {
+	counter-increment: gpr-access-step;
+	padding-top: 14px;
+	border-top: 2px solid rgba(236, 236, 234, 0.3);
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.gpr-access__steps li::before {
+	content: counter(gpr-access-step, decimal-leading-zero);
+	display: block;
+	margin-bottom: 4px;
+	color: var(--gpr-stone);
+	font-size: 13px;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+.gpr-access__steps .is-current {
+	border-top-color: var(--gpr-gold);
+	color: #fff;
+	font-weight: 600;
+}
+
+.gpr-access__steps .is-current::before {
+	color: var(--gpr-gold);
+}
+
+.gpr-access__contact {
+	margin: 22px 0 0;
+	color: rgba(255, 255, 255, 0.75);
+	font-size: 14px;
+}
+
+.gpr-access__contact a {
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 1px solid rgba(190, 154, 94, 0.7);
+}
+
+.gpr-access__contact a:hover,
+.gpr-access__contact a:focus-visible {
+	border-bottom-color: #fff;
+}
+
+.gpr-access__contact a:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
+
+.gpr-access__panel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 0;
+	padding: clamp(20px, 5vh, 56px) clamp(20px, 5vw, 72px);
+}
+
+.gpr-access__card {
+	width: 100%;
+	max-width: 440px;
+	padding: clamp(24px, 4.5vh, 44px) clamp(22px, 3vw, 40px);
+	border: 1px solid var(--gpr-stone);
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: 0 30px 60px -40px rgba(31, 68, 61, 0.55);
+}
+
+.gpr-access__card-head {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+
+.gpr-access__lock {
+	display: inline-flex;
+	flex: none;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border: 1px solid var(--gpr-gold);
+	border-radius: 50%;
+	color: var(--gpr-green);
+}
+
+.gpr-access__card-title {
+	margin: 0;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.25;
+}
+
+.gpr-access__card .gpr-page-notice:focus {
+	outline: 2px solid var(--gpr-gold);
+	outline-offset: 2px;
+}
+
+.gpr-access__card .gpr-page-notice {
+	margin-top: 18px;
+	padding: 12px 14px;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.gpr-access__form {
+	gap: 18px;
+	margin-top: 22px;
+}
+
+.gpr-access__form .gpr-page-status {
+	padding: 12px 14px;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.gpr-access__form .gpr-page-field__error {
+	margin-top: 6px;
+	font-size: 13.5px;
+	line-height: 1.4;
+}
+
+.gpr-access__alt {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px 16px;
+	margin-top: 22px;
+	padding-top: 20px;
+	border-top: 1px solid var(--gpr-stone);
+	color: rgba(2, 10, 10, 0.7);
+	font-size: 15px;
+}
+
+.gpr-access__alt .gpr-page-btn {
+	min-height: 44px;
+	padding: 10px 22px;
+}
+
+/* Phones and narrow tablets: compact green header above the form, both inside one screen */
+@media (max-width: 899px) {
+	.gpr-access-body {
+		padding: 0;
+	}
+
+	.gpr-access {
+		grid-template-columns: minmax(0, 1fr);
+		grid-template-rows: auto minmax(0, 1fr);
+	}
+
+	.gpr-access__intro {
+		gap: 14px;
+		padding: max(22px, env(safe-area-inset-top)) 20px 24px;
+	}
+
+	.gpr-access__brand {
+		font-size: 12px;
+		letter-spacing: 4px;
+	}
+
+	.gpr-access__brand::after {
+		margin-top: 12px;
+	}
+
+	.gpr-access__title {
+		font-size: clamp(26px, 7vw, 34px);
+		line-height: 1.18;
+	}
+
+	.gpr-access__text {
+		margin-top: 10px;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.gpr-access__meta {
+		display: none;
+	}
+
+	.gpr-access__panel {
+		align-items: safe center; /* centred when there's room, top-aligned otherwise */
+		padding: 18px 16px max(18px, env(safe-area-inset-bottom));
+	}
+
+	.gpr-access__card {
+		max-width: 520px;
+		margin-inline: auto;
+		padding: 22px 20px;
+		border-radius: 16px;
+	}
+
+	.gpr-access__card-head {
+		gap: 12px;
+	}
+
+	.gpr-access__lock {
+		width: 36px;
+		height: 36px;
+	}
+
+	.gpr-access__card-title {
+		font-size: 20px;
+	}
+
+	.gpr-access__card .gpr-page-notice {
+		margin-top: 14px;
+	}
+
+	.gpr-access__form {
+		gap: 14px;
+		margin-top: 16px;
+	}
+
+	.gpr-access__form .gpr-page-field label {
+		margin-bottom: 6px;
+		font-size: 14px;
+	}
+
+	.gpr-access__form .gpr-page-field input {
+		min-height: 48px;
+		padding: 10px 14px;
+	}
+
+	.gpr-access__alt {
+		margin-top: 16px;
+		padding-top: 14px;
+		font-size: 14px;
+	}
+}
+
+/* Short screens (small phones, landscape laptops): tighten vertical rhythm so everything still fits */
+@media (max-height: 720px) {
+	.gpr-access__intro {
+		padding-block: 22px;
+	}
+
+	.gpr-access__text {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.gpr-access__card {
+		padding-block: 20px;
+	}
+
+	.gpr-access__card-head .gpr-access__lock {
+		display: none;
+	}
+
+	.gpr-access__form {
+		gap: 12px;
+		margin-top: 14px;
+	}
+
+	.gpr-access__form .gpr-page-field label {
+		margin-bottom: 4px;
+	}
+
+	.gpr-access__form .gpr-page-field input {
+		min-height: 44px;
+		padding-block: 8px;
+	}
+
+	.gpr-access__alt {
+		margin-top: 14px;
+		padding-top: 12px;
+	}
+}
+
+@media (max-width: 899px) and (max-height: 700px) {
+	/* The page title already says what this card is for */
+	.gpr-access__card-head {
+		display: none;
+	}
+
+	.gpr-access__card .gpr-page-notice {
+		margin-top: 0;
+	}
+
+	.gpr-access__intro {
+		gap: 10px;
+		padding-block: 16px 18px;
+	}
+
+	.gpr-access__brand::after {
+		display: none;
+	}
+
+	.gpr-access__title {
+		font-size: 24px;
+	}
+
+	.gpr-access__text {
+		margin-top: 6px;
+		font-size: 14px;
+	}
+
+	.gpr-access__panel {
+		padding-top: 12px;
+	}
+
+	.gpr-access__card {
+		padding: 16px;
+	}
+}
+
+/* Short phones: once a message is showing, the visitor has read the intro, so it tucks away to make room */
+@media (max-width: 899px) and (max-height: 760px) {
+	.gpr-access:has(.gpr-page-field__error:not([hidden]), .gpr-page-status:not([hidden])) .gpr-access__brand,
+	.gpr-access:has(.gpr-page-field__error:not([hidden]), .gpr-page-status:not([hidden])) .gpr-access__text {
+		display: none;
+	}
+}
+
+/* Very small phones (e.g. 320×568) */
+@media (max-width: 899px) and (max-height: 600px) {
+	.gpr-access__intro {
+		padding-block: 12px 14px;
+	}
+
+	.gpr-access__brand {
+		display: none;
+	}
+
+	.gpr-access__title {
+		font-size: 21px;
+	}
+
+	.gpr-access__text {
+		font-size: 13.5px;
+		line-height: 1.4;
+	}
+
+	.gpr-access__panel {
+		padding: 10px 12px;
+	}
+
+	.gpr-access__card {
+		padding: 14px;
+	}
+
+	.gpr-access__card-title {
+		font-size: 18px;
+	}
+
+	.gpr-access__card .gpr-page-notice,
+	.gpr-access__form .gpr-page-status {
+		padding: 8px 10px;
+		font-size: 13px;
+		line-height: 1.4;
+	}
+
+	.gpr-access__form {
+		gap: 10px;
+		margin-top: 10px;
+	}
+
+	.gpr-access__form .gpr-page-field label {
+		font-size: 13px;
+	}
+
+	.gpr-access__form .gpr-page-field input {
+		min-height: 42px;
+	}
+
+	.gpr-access__form .gpr-page-btn {
+		min-height: 44px;
+		padding-block: 10px;
+	}
+
+	.gpr-access__alt {
+		margin-top: 10px;
+		padding-top: 10px;
+		font-size: 13px;
+	}
+
+	.gpr-access__alt .gpr-page-btn {
+		min-height: 40px;
+		padding: 8px 16px;
+	}
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 767px) {
+	body {
+		align-items: flex-start;
+		padding: 32px 16px;
+		font-size: 16px;
+	}
+
+	.gpr-page {
+		padding: 40px 24px 32px;
+	}
+
+	.gpr-page__eyebrow {
+		font-size: 12px;
+		letter-spacing: 4px;
+	}
+
+	.gpr-page__title {
+		font-size: 30px;
+		line-height: 1.25;
+	}
+
+	.gpr-page__actions,
+	.gpr-page__actions .gpr-page-btn {
+		width: 100%;
+	}
+
+	.gpr-page__actions {
+		flex-direction: column;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.gpr-page-btn,
+	.gpr-page-field input {
+		transition: none;
+	}
+
+	.gpr-page-btn.is-loading::before {
+		animation-duration: 2.4s;
+	}
+}

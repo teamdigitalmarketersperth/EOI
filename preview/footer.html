@@ -1,0 +1,307 @@
+<!--
+  GP Refresh footer: logo, contact details, social icons.
+  Self-contained (scoped .gpr-footer CSS + inline SVG icons), so it renders the same everywhere and
+  doesn't depend on icon fonts. To use on the live site, paste this whole block into an Elementor
+  HTML widget in the footer template.
+-->
+<style>
+  .gpr-footer {
+    --gpr-ink: var(--theme-palette-color-1, #020a0a);
+    --gpr-gold: var(--theme-palette-color-3, #be9a5e);
+    --gpr-stone: var(--theme-palette-color-5, #ececea);
+    background: var(--gpr-ink);
+    color: #fff;
+    font-family: "Urbanist", sans-serif;
+    letter-spacing: 0.3px;
+    padding: 88px 70px 64px;
+  }
+
+  .gpr-footer *,
+  .gpr-footer *::before,
+  .gpr-footer *::after {
+    box-sizing: border-box;
+  }
+
+  .gpr-footer__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .gpr-footer__logo {
+    display: inline-block;
+    line-height: 0;
+  }
+
+  .gpr-footer__logo img {
+    display: block;
+    width: 260px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .gpr-footer__eyebrow {
+    margin: 56px 0 28px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gpr-gold);
+  }
+
+  .gpr-footer__contact {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    max-width: 960px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .gpr-footer__contact li + li {
+    border-left: 1px solid rgba(236, 236, 234, 0.16);
+  }
+
+  .gpr-footer__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    padding: 4px 24px;
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .gpr-footer__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(190, 154, 94, 0.5);
+    border-radius: 50%;
+    color: var(--gpr-gold);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .gpr-footer__icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+  }
+
+  .gpr-footer__label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gpr-stone);
+    opacity: 0.75;
+  }
+
+  .gpr-footer__value {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .gpr-footer__sub {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  a.gpr-footer__item:hover .gpr-footer__value,
+  a.gpr-footer__item:focus-visible .gpr-footer__value {
+    color: var(--gpr-gold);
+  }
+
+  a.gpr-footer__item:hover .gpr-footer__icon,
+  a.gpr-footer__item:focus-visible .gpr-footer__icon {
+    background: var(--gpr-gold);
+    border-color: var(--gpr-gold);
+    color: var(--gpr-ink);
+  }
+
+  .gpr-footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 960px;
+    margin: 56px 0 0;
+    padding: 40px 0 0;
+    border-top: 1px solid rgba(190, 154, 94, 0.5);
+    list-style: none;
+  }
+
+  .gpr-footer__social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(236, 236, 234, 0.25);
+    border-radius: 50%;
+    color: #fff;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .gpr-footer__social svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  .gpr-footer__social a:hover,
+  .gpr-footer__social a:focus-visible {
+    background: var(--gpr-gold);
+    border-color: var(--gpr-gold);
+    color: var(--gpr-ink);
+  }
+
+  .gpr-footer a:focus-visible {
+    outline: 2px solid var(--gpr-gold);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 1024px) {
+    .gpr-footer {
+      padding: 72px 30px 56px;
+    }
+
+    .gpr-footer__item {
+      padding: 4px 12px;
+    }
+
+    .gpr-footer__value {
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .gpr-footer {
+      padding: 64px 20px 96px; /* bottom room for the back-to-top button */
+    }
+
+    .gpr-footer__logo img {
+      width: 220px;
+    }
+
+    .gpr-footer__eyebrow {
+      margin: 44px 0 8px;
+      font-size: 12px;
+      letter-spacing: 4px;
+    }
+
+    .gpr-footer__contact {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 340px;
+    }
+
+    .gpr-footer__contact li + li {
+      border-left: 0;
+      border-top: 1px solid rgba(236, 236, 234, 0.16);
+    }
+
+    .gpr-footer__item {
+      padding: 24px 0;
+    }
+
+    .gpr-footer__social {
+      max-width: 340px;
+      margin-top: 16px;
+      padding-top: 32px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gpr-footer__icon,
+    .gpr-footer__social a {
+      transition: none;
+    }
+  }
+</style>
+<div class="gpr-footer">
+  <div class="gpr-footer__inner">
+    <a class="gpr-footer__logo" href="https://www.gprefresh.com/">
+      <img
+        src="https://www.gprefresh.com/wp-content/uploads/2026/08/White-Mobile-1.png"
+        srcset="
+          https://www.gprefresh.com/wp-content/uploads/2026/08/White-Mobile-1-300x75.png 300w,
+          https://www.gprefresh.com/wp-content/uploads/2026/08/White-Mobile-1.png        502w
+        "
+        sizes="260px"
+        width="502"
+        height="126"
+        alt="GP Refresh home"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+
+    <h2 class="gpr-footer__eyebrow">Contact Us</h2>
+
+    <ul class="gpr-footer__contact">
+      <li>
+        <a class="gpr-footer__item" href="tel:1300477337">
+          <span class="gpr-footer__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1-.24c1.12.37 2.33.57 3.59.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.26.2 2.47.57 3.59a1 1 0 0 1-.25 1l-2.2 2.2z"/></svg>
+          </span>
+          <span class="gpr-footer__label">Phone</span>
+          <span class="gpr-footer__value">1300 GP REFRESH</span>
+          <span class="gpr-footer__sub">1300 477 337</span>
+        </a>
+      </li>
+      <li>
+        <a class="gpr-footer__item" href="tel:1300824180">
+          <span class="gpr-footer__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M19 8h-1V3H6v5H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3zM8 5h8v3H8V5zm8 14H8v-4h8v4zm2-4v-2H6v2H4v-4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4h-2zm0-3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+          </span>
+          <span class="gpr-footer__label">Fax</span>
+          <span class="gpr-footer__value">1300 824 180</span>
+        </a>
+      </li>
+      <li>
+        <a class="gpr-footer__item" href="mailto:connect@gprefresh.com">
+          <span class="gpr-footer__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2v.51l-8 5.33-8-5.33V6h16zM4 18V8.92l7.45 4.97a1 1 0 0 0 1.1 0L20 8.92V18H4z"/></svg>
+          </span>
+          <span class="gpr-footer__label">Email</span>
+          <span class="gpr-footer__value">connect@gprefresh.com</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul class="gpr-footer__social" aria-label="GP Refresh on social media">
+      <li>
+        <a href="https://www.facebook.com/people/GP-Refresh/61578268177294/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="3 3.75 18 18" aria-hidden="true"><path d="M13.5 21v-7.5h2.53l.38-2.94H13.5V8.69c0-.85.24-1.43 1.46-1.43h1.55V4.63A20.6 20.6 0 0 0 14.25 4.5c-2.24 0-3.77 1.37-3.77 3.88v2.17H7.95v2.94h2.53V21h3.02z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/gprefresh/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85C2.38 3.92 3.9 2.38 7.15 2.23 8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/company/gp-refresh/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/@GPRefreshConference" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

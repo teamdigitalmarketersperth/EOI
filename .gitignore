@@ -1,0 +1,5 @@
+# The prospectus must never be published through GitHub Pages
+*.pdf
+# Plain access codes: private, import into GHL only
+access-codes.csv
+.playwright-mcp/

@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Delegates Say | GP Refresh</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap');
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5f4ee;
+}
+:root {
+  --gpr-social-green: #1f443d;
+  --gpr-social-ink: #102a25;
+  --gpr-social-gold: #be9a5e;
+}
+.gpr-testimonials-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 100%;
+  padding: 68px 70px 54px;
+  background: #faf7ee url('assets/background%20image.jpeg') center / cover no-repeat;
+  color: var(--gpr-social-ink);
+  font-family: 'Urbanist', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+.gpr-testimonials-section :where(h2, h3, p, blockquote) {
+  margin: 0;
+  font-family: inherit;
+  color: inherit;
+}
+.gpr-social-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+.gpr-social-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+  align-items: end;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.gpr-social-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px !important;
+  color: #78613d !important;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.gpr-social-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gpr-social-gold);
+}
+.gpr-testimonials-section .gpr-social-title {
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -1.2px;
+}
+.gpr-social-title em {
+  font-family: Georgia, serif;
+  font-weight: 400;
+  color: #826637;
+}
+.gpr-testimonials-section .gpr-social-intro {
+  max-width: 440px;
+  margin-top: 14px;
+  color: #53625b;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.gpr-social-proof {
+  padding: 20px 24px 15px;
+  border: 1px solid rgba(163, 135, 84, .25);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, .84);
+}
+.gpr-social-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.gpr-social-stat + .gpr-social-stat {
+  padding-left: 25px;
+  border-left: 1px solid #e0d6c4;
+}
+.gpr-social-stat strong {
+  display: block;
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.gpr-social-stat span {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #53625b;
+}
+.gpr-testimonials-section .gpr-social-survey {
+  margin-top: 13px;
+  font-size: 10px;
+  color: #657067;
+}
+.gpr-social-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  min-width: 0;
+}
+.gpr-social-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 270px;
+  padding: 23px 21px 20px;
+  border: 1px solid rgba(163, 135, 84, .26);
+  border-radius: 14px;
+  background: rgba(255, 253, 248, .94);
+  box-shadow: 0 8px 24px -20px rgba(21, 47, 39, .28);
+}
+.gpr-social-card--featured {
+  background: linear-gradient(145deg, #234c41, #102f28);
+  color: #faf4e6;
+  border-color: #315c4f;
+}
+.gpr-social-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.gpr-testimonials-section .gpr-social-topic {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.gpr-social-index {
+  color: #8a7450;
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.gpr-social-card--featured .gpr-social-index {
+  color: #d9bb83;
+}
+.gpr-social-quote-mark {
+  height: 42px;
+  margin-top: 16px;
+  color: #b29259;
+  font-family: Georgia, serif;
+  font-size: 58px;
+  line-height: 1;
+}
+.gpr-social-card blockquote,
+.gpr-testimonials-section .gpr-social-highlight {
+  flex: 1;
+  margin-bottom: 20px;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -.3px;
+}
+.gpr-social-card blockquote p {
+  font-family: inherit;
+}
+.gpr-testimonials-section .gpr-social-credit {
+  margin-top: auto;
+  margin-bottom: 14px;
+  color: #677268;
+  font-size: 10px;
+}
+.gpr-social-card--featured .gpr-social-credit {
+  color: #d1dfd4;
+}
+.gpr-social-watch {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(163, 135, 84, .24);
+  color: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.gpr-social-watch svg {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 8px;
+  border: 1px solid #b29259;
+  border-radius: 50%;
+  fill: currentColor;
+}
+.gpr-social-watch span:last-child {
+  margin-left: auto;
+  color: #8a7450;
+}
+.gpr-social-card--featured .gpr-social-watch span:last-child {
+  color: #d9bb83;
+}
+.gpr-social-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+}
+.gpr-testimonials-section .gpr-social-caption {
+  color: #53625b;
+  font-size: 12px;
+}
+.gpr-social-swipe {
+  display: none;
+}
+.gpr-social-follow {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  padding: 10px 20px;
+  border: 1px solid #a68b59;
+  border-radius: 30px;
+  color: var(--gpr-social-green);
+  background: rgba(255, 253, 248, .9);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.gpr-testimonials-section :is(a, button):focus-visible {
+  outline: 2px solid #97753a;
+  outline-offset: 4px;
+}
+.gpr-social-ornament {
+  position: absolute;
+  z-index: 0;
+  top: 30px;
+  right: -120px;
+  width: 310px;
+  height: 310px;
+  border: 1px solid rgba(190, 154, 94, .22);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.gpr-social-ornament::before,
+.gpr-social-ornament::after {
+  content: '';
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(190, 154, 94, .2);
+  border-radius: 50%;
+}
+.gpr-social-ornament::after {
+  inset: 48px;
+}
+.gpr-social-dialog {
+  box-sizing: border-box;
+  width: min(420px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(210, 178, 120, .65);
+  border-radius: 22px;
+  background: linear-gradient(145deg, #24483e, #0c251f 70%);
+  color: #faf4e6;
+  font-family: 'Urbanist', sans-serif;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 240, 210, .15);
+}
+.gpr-social-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gpr-social-dialog::backdrop {
+  background: rgba(4, 15, 12, .82);
+  backdrop-filter: blur(6px);
+}
+.gpr-social-dialog:not([open]) {
+  display: none;
+}
+.gpr-social-dialog-header {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+.gpr-social-dialog-heading {
+  min-width: 0;
+}
+.gpr-social-dialog .gpr-social-dialog-eyebrow {
+  margin-bottom: 4px;
+  color: #d8bd88;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+}
+.gpr-social-dialog-header h3 {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.gpr-social-close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(216, 189, 136, .4);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .04);
+  color: #faf4e6;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.gpr-social-player {
+  position: relative;
+  flex: none;
+  align-self: center;
+  width: 360px;
+  max-width: 100%;
+  height: 480px;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgba(216, 189, 136, .25), 0 8px 24px rgba(0, 0, 0, .18);
+}
+.gpr-social-player iframe {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 360px;
+  max-width: none;
+  height: 900px;
+  border: 0;
+  background: #fff;
+  transform-origin: top left;
+}
+.gpr-social-dialog .gpr-social-open-original {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid rgba(216, 189, 136, .3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .04);
+  color: #f1e3c9;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+}
+@media (max-width: 1024px) {
+  .gpr-testimonials-section { padding: 56px 30px 44px; }
+  .gpr-social-header { gap: 24px; }
+  .gpr-social-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gpr-social-card { min-height: 245px; }
+}
+@media (max-width: 767px) {
+  .gpr-testimonials-section { padding: 44px 20px 36px; }
+  .gpr-social-header { grid-template-columns: minmax(0, 1fr); gap: 22px; margin-bottom: 22px; }
+  .gpr-social-proof { max-width: 380px; padding: 16px 20px 13px; }
+  .gpr-social-stat strong { font-size: 28px; }
+  .gpr-social-cards {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(240px, 82%);
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #be9a5e transparent;
+    padding-bottom: 12px;
+  }
+  .gpr-social-card { min-height: 275px; scroll-snap-align: start; }
+  .gpr-social-footer { align-items: flex-start; margin-top: 16px; gap: 12px; flex-wrap: wrap; }
+  .gpr-social-caption { display: none; }
+  .gpr-social-swipe { display: inline; color: #53625b; font-size: 11px; line-height: 44px; }
+  .gpr-social-follow { padding-inline: 16px; }
+  .gpr-social-dialog { padding: 14px; }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .gpr-social-card { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+  .gpr-social-card:hover { transform: translateY(-4px); border-color: #be9a5e; box-shadow: 0 14px 30px -20px rgba(21, 47, 39, .35); }
+  .gpr-social-follow { transition: background-color .2s ease; }
+  .gpr-social-follow:hover { background: #eee5d2; }
+  .gpr-social-close, .gpr-social-dialog .gpr-social-open-original { transition: background-color .2s ease, border-color .2s ease; }
+  .gpr-social-close:hover, .gpr-social-dialog .gpr-social-open-original:hover { background: rgba(216, 189, 136, .12); border-color: #be9a5e; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .gpr-social-dialog[open] { animation: gpr-social-popup-in .22s cubic-bezier(.22, 1, .36, 1); }
+}
+@keyframes gpr-social-popup-in {
+  from { opacity: 0; transform: translateY(10px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .gpr-social-ornament {
+      animation: gpr-social-drift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+@keyframes gpr-social-drift {
+  from { transform: translate(-12px, -25px) scale(.92); }
+  to { transform: translate(12px, 35px) scale(1.08); }
+}
+</style>
+</head>
+<body>
+<section class="gpr-testimonials-section" id="testimonials" aria-labelledby="gpr-social-title">
+  <div class="gpr-social-ornament" aria-hidden="true"></div>
+  <div class="gpr-social-inner">
+    <header class="gpr-social-header">
+      <div data-social-reveal>
+        <p class="gpr-social-eyebrow">From our GP community</p>
+        <h2 class="gpr-social-title" id="gpr-social-title">What <em>delegates</em> say.</h2>
+        <p class="gpr-social-intro">Real experiences, practical learning and connections that last beyond the conference.</p>
+      </div>
+      <div class="gpr-social-proof" data-social-reveal>
+        <div class="gpr-social-stats">
+          <div class="gpr-social-stat"><strong>79%</strong><span>rated the experience 10/10</span></div>
+          <div class="gpr-social-stat"><strong>100%</strong><span>would return next year</span></div>
+        </div>
+        <p class="gpr-social-survey">Melbourne 2026 delegate survey</p>
+      </div>
+    </header>
+    <div class="gpr-social-cards" tabindex="0" aria-label="Delegate experiences. Scroll to explore four reels.">
+      <article class="gpr-social-card gpr-social-card--featured" data-social-reveal>
+        <div class="gpr-social-card-top"><h3 class="gpr-social-topic">The experience</h3><span class="gpr-social-index">01 / 04</span></div>
+        <div class="gpr-social-quote-mark" aria-hidden="true">“</div>
+        <blockquote><p>“Would I come next year? Yeah, 100%.”</p></blockquote>
+        <p class="gpr-social-credit">GP delegate · Annual conference</p>
+        <a class="gpr-social-watch" data-gpr-reel href="https://www.instagram.com/reel/DbNpDp8FAhu/" target="_blank" rel="noopener noreferrer" aria-label="Watch the featured delegate review">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5 10 6 3 10.5Z"/></svg><span>Watch reel</span><span aria-hidden="true">↗</span>
+        </a>
+      </article>
+      <article class="gpr-social-card" data-social-reveal>
+        <div class="gpr-social-card-top"><h3 class="gpr-social-topic">Clinical confidence</h3><span class="gpr-social-index">02 / 04</span></div>
+        <div class="gpr-social-quote-mark" aria-hidden="true">“</div>
+        <blockquote><p>“Relevant clinical updates across the broad scope of General Practice.”</p></blockquote>
+        <p class="gpr-social-credit">GP attendee · Clinical practice review</p>
+        <a class="gpr-social-watch" data-gpr-reel href="https://www.instagram.com/reel/DbVVqn9jdAF/" target="_blank" rel="noopener noreferrer" aria-label="Watch the clinical scope review">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5 10 6 3 10.5Z"/></svg><span>Watch reel</span><span aria-hidden="true">↗</span>
+        </a>
+      </article>
+      <article class="gpr-social-card" data-social-reveal>
+        <div class="gpr-social-card-top"><h3 class="gpr-social-topic">A fresh perspective</h3><span class="gpr-social-index">03 / 04</span></div>
+        <div class="gpr-social-quote-mark" aria-hidden="true">“</div>
+        <blockquote><p>“A wonderful weekend refreshing essential clinical practice knowledge with fellow colleagues across Australia.”</p></blockquote>
+        <p class="gpr-social-credit">GP attendee · Melbourne conference</p>
+        <a class="gpr-social-watch" data-gpr-reel href="https://www.instagram.com/reel/DbSUPAYDatQ/" target="_blank" rel="noopener noreferrer" aria-label="Watch the weekend refresher review">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5 10 6 3 10.5Z"/></svg><span>Watch reel</span><span aria-hidden="true">↗</span>
+        </a>
+      </article>
+      <article class="gpr-social-card" data-social-reveal>
+        <div class="gpr-social-card-top"><h3 class="gpr-social-topic">Inside GP Refresh</h3><span class="gpr-social-index">04 / 04</span></div>
+        <div class="gpr-social-quote-mark" aria-hidden="true">✧</div>
+        <p class="gpr-social-highlight">The learning. The conversations. The moments in between.</p>
+        <p class="gpr-social-credit">Conference highlights · GP Refresh</p>
+        <a class="gpr-social-watch" data-gpr-reel href="https://www.instagram.com/reel/DclFN__FI0H/" target="_blank" rel="noopener noreferrer" aria-label="Watch the conference highlights">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.5 10 6 3 10.5Z"/></svg><span>Watch highlights</span><span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    </div>
+    <div class="gpr-social-footer" data-social-reveal>
+      <p class="gpr-social-caption">Four perspectives. One connected community.</p>
+      <span class="gpr-social-swipe">Swipe to explore →</span>
+      <a class="gpr-social-follow" href="https://www.instagram.com/gprefresh/" target="_blank" rel="noopener noreferrer">Follow @gprefresh <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <dialog class="gpr-social-dialog" aria-labelledby="gpr-social-dialog-title">
+    <div class="gpr-social-dialog-header"><div class="gpr-social-dialog-heading"><p class="gpr-social-dialog-eyebrow">GP Refresh · Delegate stories</p><h3 id="gpr-social-dialog-title">GP Refresh delegate experience</h3></div><button type="button" class="gpr-social-close" aria-label="Close reel">×</button></div>
+    <div class="gpr-social-player"></div>
+    <a class="gpr-social-open-original" href="https://www.instagram.com/gprefresh/" target="_blank" rel="noopener noreferrer">Open on Instagram <span aria-hidden="true">↗</span></a>
+  </dialog>
+</section>
+<script>
+(function () {
+  'use strict';
+  var root = document.getElementById('testimonials');
+  if (!root || root.dataset.socialReady) return;
+  root.dataset.socialReady = 'true';
+  var preference = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: true };
+  var dialog = root.querySelector('.gpr-social-dialog');
+  var player = root.querySelector('.gpr-social-player');
+  var opener;
+  var previousOverflow;
+  if (dialog && typeof dialog.showModal === 'function') {
+    var currentFrame;
+    var nativeHeight = 900;
+    var fitRequest;
+    var header = root.querySelector('.gpr-social-dialog-header');
+    var originalLink = root.querySelector('.gpr-social-open-original');
+    function fitPlayer() {
+      if (!dialog.open || !currentFrame) return;
+      var style = window.getComputedStyle(dialog);
+      var viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+      var paddingX = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      var paddingY = parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+      var bordersY = parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
+      var gap = parseFloat(style.rowGap) || 12;
+      var availableHeight = Math.max(1, viewportHeight - 32 - paddingY - bordersY
+        - header.offsetHeight - originalLink.offsetHeight - 2 * gap);
+      var availableWidth = Math.max(1, dialog.clientWidth - paddingX);
+      var scale = Math.min(1, availableWidth / 360, availableHeight / nativeHeight);
+      player.style.width = (360 * scale) + 'px';
+      player.style.height = (nativeHeight * scale) + 'px';
+      currentFrame.style.height = nativeHeight + 'px';
+      currentFrame.style.transform = 'scale(' + scale + ')';
+    }
+    function queueFit() {
+      if (!dialog.open || fitRequest) return;
+      fitRequest = window.requestAnimationFrame(function () { fitRequest = null; fitPlayer(); });
+    }
+    window.addEventListener('resize', queueFit, { passive: true });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', queueFit, { passive: true });
+    // Only accept embed measurements from the currently displayed Instagram frame.
+    window.addEventListener('message', function (event) {
+      if (!dialog.open || !currentFrame || event.source !== currentFrame.contentWindow
+          || event.origin !== 'https://www.instagram.com') return;
+      var data = event.data;
+      if (typeof data === 'string') {
+        try { data = JSON.parse(data); } catch (_) { return; }
+      }
+      if (!data || data.type !== 'MEASURE' || !data.details) return;
+      var height = Number(data.details.height);
+      if (!Number.isFinite(height) || height < 320 || height > 4000) return;
+      nativeHeight = Math.ceil(height);
+      queueFit();
+    });
+    root.querySelectorAll('[data-gpr-reel]').forEach(function (link) {
+      link.addEventListener('click', function (event) {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button > 0) return;
+        event.preventDefault();
+        opener = link;
+        var title = link.getAttribute('aria-label').replace(/^Watch (the )?/i, '');
+        root.querySelector('#gpr-social-dialog-title').textContent = title.charAt(0).toUpperCase() + title.slice(1);
+        originalLink.href = link.href;
+        player.replaceChildren();
+        nativeHeight = 900;
+        var iframe = document.createElement('iframe');
+        currentFrame = iframe;
+        iframe.src = link.href.replace(/\/$/, '') + '/embed/';
+        iframe.title = link.getAttribute('aria-label');
+        iframe.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.addEventListener('load', queueFit);
+        player.appendChild(iframe);
+        previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        dialog.showModal();
+        fitPlayer();
+      });
+    });
+    root.querySelector('.gpr-social-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (event) {
+      if (event.target !== dialog) return;
+      var bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
+    dialog.addEventListener('close', function () {
+      if (fitRequest) window.cancelAnimationFrame(fitRequest);
+      fitRequest = null;
+      currentFrame = null;
+      player.replaceChildren();
+      player.style.width = '';
+      player.style.height = '';
+      document.body.style.overflow = previousOverflow;
+      if (opener && opener.isConnected) opener.focus({ preventScroll: true });
+    });
+  }
+  var observer;
+  var active = new Set();
+  function stopMotion() {
+    if (observer) observer.disconnect();
+    active.forEach(function (animation) { animation.cancel(); });
+    active.clear();
+  }
+  function startMotion() {
+    if (preference.matches || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
+    observer = new IntersectionObserver(function (entries) {
+      var order = 0;
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        if (preference.matches || entry.target.dataset.socialRevealed) return;
+        entry.target.dataset.socialRevealed = 'true';
+        if (entry.target.contains(document.activeElement)) return;
+        var animation = entry.target.animate([
+          { opacity: 0, transform: 'translateY(20px)' },
+          { opacity: 1, transform: 'translateY(0)' }
+        ], { duration: 650, delay: (order++ % 4) * 85, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' });
+        active.add(animation);
+        animation.onfinish = animation.oncancel = function () { active.delete(animation); };
+      });
+    }, { threshold: .12 });
+    root.querySelectorAll('[data-social-reveal]').forEach(function (element) {
+      if (!element.dataset.socialRevealed) observer.observe(element);
+    });
+  }
+  root.addEventListener('focusin', function (event) {
+    active.forEach(function (animation) {
+      if (animation.effect.target.contains(event.target)) animation.cancel();
+    });
+  });
+  if (preference.addEventListener) preference.addEventListener('change', function () { stopMotion(); startMotion(); });
+  startMotion();
+})();
+</script>
+</body>
+</html>
